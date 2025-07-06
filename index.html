@@ -6,7 +6,6 @@
     <title>Vladislav Ludomanovich Casino</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Neon glow animation */
         @keyframes neonGlow {
             0% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
             50% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
@@ -17,7 +16,6 @@
             animation: neonGlow 2s ease-in-out infinite;
         }
 
-        /* Roulette animation */
         .roulette {
             width: 350px;
             height: 350px;
@@ -69,7 +67,6 @@
             filter: drop-shadow(0 0 10px #00ffff);
         }
 
-        /* Neon button hover */
         .neon-button:hover {
             box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
         }
@@ -111,29 +108,24 @@
                 return;
             }
 
-            // Disable button during spin
             spinButton.disabled = true;
             spinButton.textContent = 'Кручу верчу твой баланс въебу...';
 
-            // Reset animation
             roulette.style.animation = 'none';
-            void roulette.offsetWidth; // Trigger reflow
+            void roulette.offsetWidth;
             roulette.style.animation = 'spin 3s ease-out forwards';
 
-            // Simulate result after animation
             setTimeout(() => {
                 const random = Math.random() * 100;
                 if (random < 5) {
-                    // 5% chance to win
-                    const winnings = bet * 2; // x2 multiplier
+                    const winnings = bet * 2;
                     balance += winnings;
                     resultText.textContent = `Слыш говно! Какого хера $${winnings.toFixed(2)}!`;
                     resultText.classList.remove('text-red-400', 'text-yellow-400');
                     resultText.classList.add('text-green-400');
                 } else {
-                    // 95% chance to lose
                     balance -= bet;
-                    resultText.textContent = `ХАХХАХАХА, НУ ТЫ И ЛОХ $${bet.toFixed(2)}. СОСИ ВОЗМОЖНО ДАМ!`;
+                    resultText.textContent = `ХАХХАХАХА, НУ ТЫ И ЛОХ $${bet.toFixed(2)}. СОСИ!`;
                     resultText.classList.remove('text-green-400', 'text-yellow-400');
                     resultText.classList.add('text-red-400');
                 }
